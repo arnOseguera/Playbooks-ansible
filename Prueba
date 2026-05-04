@@ -1,0 +1,15 @@
+---
+- name: Pruebas
+  hosts: all
+  become: yes
+  tasks:
+    - name: Verificar conexion (Ping)
+      ansible.builtin.ping:
+
+    - name: Obtener tiempo de encendido del servidor
+      ansible.builtin.command: uptime
+      register: uptime_output
+
+    - name: Mostrar el uptime en la consola
+      ansible.builtin.debug:
+        var: uptime_output.stdout
